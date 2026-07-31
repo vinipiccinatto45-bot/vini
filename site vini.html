@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INOVE X-SKIN | Loja oficial</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #07090d;
+            --panel: #111722;
+            --panel-2: #172131;
+            --text: #ffffff;
+            --muted: #a8b5c4;
+            --accent: #00a8ff;
+            --accent-2: #5eead4;
+            --danger: #ff6b6b;
+            --border: rgba(255, 255, 255, .12);
+            --shadow: 0 28px 90px rgba(0, 0, 0, .42);
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 16% 8%, rgba(0, 168, 255, .22), transparent 28%),
+                radial-gradient(circle at 84% 22%, rgba(94, 234, 212, .13), transparent 25%),
+                linear-gradient(180deg, #07090d 0%, #0b1018 56%, #07090d 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        img, video {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            width: min(1240px, calc(100% - 32px));
+            margin: 0 auto;
+            padding-bottom: 64px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px 0;
+            background: rgba(7, 9, 13, .86);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+        }
+
+        .brand {
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a {
+            min-height: 40px;
+            padding: 0 14px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s ease, border-color .2s ease, background .2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text);
+            border-color: var(--border);
+            background: rgba(255,255,255,.05);
+        }
+
+        .cart-badge {
+            min-width: 22px;
+            min-height: 22px;
+            border-radius: 999px;
+            display: inline-grid;
+            place-items: center;
+            background: var(--accent);
+            color: #041018;
+            font-size: .75rem;
+            font-weight: 900;
+        }
+
+        section {
+            padding: 78px 0;
+        }
+
+        .hero {
+            min-height: calc(100vh - 78px);
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            align-items: center;
+            gap: 44px;
+            padding-top: 48px;
+        }
+
+        .overline {
+            margin-bottom: 18px;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            letter-spacing: .24em;
+            font-size: .78rem;
+            font-weight: 850;
+        }
+
+        h1 {
+            max-width: 10ch;
+            margin-bottom: 24px;
+            font-size: clamp(3.2rem, 7vw, 6.2rem);
+            line-height: .9;
+        }
+
+        h2 {
+            margin-bottom: 18px;
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            line-height: 1.04;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            font-size: 1.12rem;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .lead {
+            max-width: 660px;
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            min-height: 50px;
+            padding: 0 22px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255,255,255,.065);
+            color: var(--text);
+            font: inherit;
+            font-weight: 850;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform .2s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,.22);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #6be7ff);
+            color: #061019;
+            box-shadow: 0 18px 45px rgba(0, 168, 255, .25);
+        }
+
+        .btn-secondary {
+            border-color: var(--border);
+        }
+
+        .btn-danger {
+            border-color: rgba(255, 107, 107, .5);
+            color: #ffd7d7;
+        }
+
+        .hero-media, .gallery-main, .thumb, .card, .product-card, .cart-panel, .checkout-panel, .address-card, .video-frame {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255,255,255,.045);
+            box-shadow: 0 20px 60px rgba(0,0,0,.2);
+        }
+
+        .hero-media, .gallery-main, .product-card, .video-frame {
+            overflow: hidden;
+        }
+
+        .hero-media {
+            box-shadow: var(--shadow);
+        }
+
+        .hero-media img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .media-caption {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border);
+        }
+
+        .media-caption div {
+            padding: 18px;
+            border-right: 1px solid var(--border);
+        }
+
+        .media-caption div:last-child {
+            border-right: 0;
+        }
+
+        .media-caption strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--accent-2);
+            font-size: 1.3rem;
+        }
+
+        .section-header {
+            max-width: 820px;
+            margin-bottom: 32px;
+        }
+
+        .grid-3, .product-grid, .details-grid, .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .details-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .card, .address-card, .cart-panel, .checkout-panel {
+            padding: 24px;
+        }
+
+        .card ul, .product-card ul {
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1.35fr .65fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .thumbs {
+            display: grid;
+            gap: 14px;
+        }
+
+        .thumb {
+            overflow: hidden;
+            color: var(--text);
+            text-align: left;
+            cursor: pointer;
+            transition: border-color .2s ease, transform .2s ease;
+        }
+
+        .thumb:hover, .thumb.active {
+            border-color: rgba(0,168,255,.7);
+            transform: translateY(-2px);
+        }
+
+        .thumb img {
+            width: 100%;
+            aspect-ratio: 16 / 8;
+            object-fit: cover;
+        }
+
+        .thumb span {
+            display: block;
+            padding: 12px;
+            color: var(--muted);
+        }
+
+        .video-section, .contact-layout {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .video-frame video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-body {
+            padding: 22px;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .tag {
+            width: fit-content;
+            margin-bottom: 12px;
+            padding: 6px 10px;
+            border: 1px solid rgba(94,234,212,.38);
+            border-radius: 999px;
+            color: var(--accent-2);
+            font-size: .78rem;
+            font-weight: 850;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .price {
+            margin: 10px 0;
+            color: var(--accent);
+            font-size: 1.9rem;
+            font-weight: 900;
+        }
+
+        .product-body .btn {
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .spec-table {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            border-collapse: collapse;
+            overflow: hidden;
+            background: rgba(255,255,255,.04);
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            text-align: left;
+            line-height: 1.45;
+        }
+
+        .spec-table th {
+            color: var(--text);
+            background: rgba(0,168,255,.08);
+        }
+
+        .spec-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .process {
+            counter-reset: step;
+        }
+
+        .process .card {
+            position: relative;
+            padding-top: 56px;
+        }
+
+        .process .card::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            top: 18px;
+            left: 22px;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: var(--accent);
+            color: #041018;
+            font-weight: 900;
+        }
+
+        .address-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .address-list div, .order-preview {
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0,0,0,.16);
+        }
+
+        .address-list strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .map-placeholder {
+            min-height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            padding: 28px;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                radial-gradient(circle at 58% 45%, rgba(0,168,255,.28), transparent 18%),
+                #07101a;
+            background-size: 48px 48px, 48px 48px, auto, auto;
+            text-align: center;
+        }
+
+        .map-pin {
+            width: min(100%, 430px);
+            padding: 28px;
+            border: 1px solid rgba(0,168,255,.45);
+            border-radius: 8px;
+            background: rgba(7,9,13,.86);
+            box-shadow: 0 20px 70px rgba(0,0,0,.35);
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .faq-item {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255,255,255,.04);
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .cart-empty {
+            padding: 28px;
+            border: 1px dashed rgba(255,255,255,.2);
+            border-radius: 8px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .cart-items {
+            display: grid;
+            gap: 14px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 74px 1fr auto;
+            gap: 14px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0,0,0,.16);
+        }
+
+        .cart-item img {
+            width: 74px;
+            height: 62px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .cart-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255,255,255,.06);
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        .summary-row.total {
+            border-bottom: 0;
+            color: var(--text);
+            font-size: 1.35rem;
+            font-weight: 900;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .form-grid .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: grid;
+            gap: 7px;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        input, select {
+            width: 100%;
+            min-height: 44px;
+            padding: 0 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0,0,0,.25);
+            color: var(--text);
+            font: inherit;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid rgba(0,168,255,.42);
+            border-color: rgba(0,168,255,.7);
+        }
+
+        .checkout-panel .btn {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .notice {
+            min-height: 24px;
+            margin-top: 14px;
+            color: var(--accent-2);
+            font-weight: 750;
+        }
+
+        .notice.error {
+            color: #ffd0d0;
+        }
+
+        .order-preview {
+            display: none;
+            margin-top: 14px;
+        }
+
+        .order-preview.active {
+            display: block;
+        }
+
+        .footer {
+            padding: 28px 0 0;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .experience-layout {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .viewer-3d, .ai-panel {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255,255,255,.045);
+            box-shadow: var(--shadow);
+        }
+
+        .viewer-3d {
+            min-height: 510px;
+            position: relative;
+            overflow: hidden;
+            perspective: 1100px;
+            background: radial-gradient(circle at 50% 35%, rgba(0,168,255,.25), transparent 30%), linear-gradient(145deg, #101b2a, #07090d 70%);
+        }
+
+        .viewer-3d::after {
+            content: "ARRASTE PARA GIRAR";
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted);
+            font-size: .72rem;
+            letter-spacing: .15em;
+            font-weight: 800;
+        }
+
+        .scene-3d { position: absolute; inset: 0; display: grid; place-items: center; cursor: grab; touch-action: none; }
+        .scene-3d:active { cursor: grabbing; }
+        .product-3d { width: 270px; height: 360px; position: relative; transform-style: preserve-3d; transition: transform .12s linear; }
+        .suit-body { position: absolute; inset: 32px 22px 0; border: 3px solid #83ecff; border-radius: 62px 62px 38px 38px; background: linear-gradient(120deg, #1a3147, #07111b 56%, #123c50); box-shadow: inset 16px 0 34px rgba(94,234,212,.12), 0 0 55px rgba(0,168,255,.35); transform: translateZ(28px); }
+        .suit-body::before { content: "X"; position: absolute; top: 48px; left: 50%; transform: translateX(-50%); color: #62e6ff; font-size: 7rem; font-weight: 900; text-shadow: 0 0 24px #00a8ff; }
+        .collar { position: absolute; width: 110px; height: 56px; left: 80px; top: 0; border: 3px solid #83ecff; border-bottom: 0; border-radius: 48px 48px 0 0; background: #0b1722; transform: translateZ(34px); }
+        .arm { position: absolute; width: 72px; height: 210px; top: 66px; border: 3px solid #69dceb; background: linear-gradient(90deg, #0b1b29, #1d4b5c); border-radius: 32px; transform: translateZ(9px) rotate(10deg); }
+        .arm.left { left: -30px; } .arm.right { right: -30px; transform: translateZ(9px) rotate(-10deg); }
+        .core { position: absolute; width: 74px; height: 128px; top: 126px; left: 98px; border: 2px solid #5eead4; border-radius: 18px; background: repeating-linear-gradient(0deg, transparent 0 13px, rgba(94,234,212,.48) 14px 16px); box-shadow: 0 0 28px rgba(94,234,212,.35); transform: translateZ(48px); }
+        .sensor { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #62e6ff; box-shadow: 0 0 18px #00a8ff; transform: translateZ(54px); }
+        .sensor.s1 { top: 105px; left: 61px; } .sensor.s2 { top: 105px; right: 61px; } .sensor.s3 { bottom: 52px; left: 62px; } .sensor.s4 { bottom: 52px; right: 62px; }
+        .viewer-label { position: absolute; top: 18px; left: 20px; padding: 8px 11px; border: 1px solid rgba(94,234,212,.4); border-radius: 999px; color: var(--accent-2); font-size: .76rem; font-weight: 850; letter-spacing: .08em; }
+
+        .ai-panel { padding: 22px; display: flex; flex-direction: column; min-height: 510px; }
+        .ai-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .ai-status { color: var(--accent-2); font-size: .8rem; font-weight: 800; }
+        .ai-status::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+        .chat-messages { flex: 1; min-height: 260px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; padding: 4px 3px 12px; }
+        .message { max-width: 88%; padding: 12px 14px; border-radius: 12px; line-height: 1.5; font-size: .94rem; }
+        .message.bot { align-self: flex-start; background: rgba(255,255,255,.08); border: 1px solid var(--border); color: var(--text); }
+        .message.user { align-self: flex-end; background: linear-gradient(135deg, var(--accent), #337cbd); color: #061019; font-weight: 650; }
+        .quick-questions { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+        .quick-question { padding: 7px 10px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--muted); font: inherit; font-size: .78rem; cursor: pointer; }
+        .quick-question:hover { border-color: var(--accent); color: var(--text); }
+        .chat-form { display: flex; gap: 8px; }
+        .chat-form input { min-width: 0; }
+        .chat-form button { min-height: 44px; padding: 0 15px; }
+
+        @media (max-width: 980px) {
+            .hero, .gallery, .cart-layout, .video-section, .contact-layout, .experience-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid, .grid-3, .details-grid, .info-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 680px) {
+            .page {
+                width: min(100% - 22px, 1240px);
+            }
+
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            nav {
+                justify-content: flex-start;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+
+            section {
+                padding: 58px 0;
+            }
+
+            .product-grid, .grid-3, .details-grid, .info-grid, .media-caption, .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 62px 1fr;
+            }
+
+            .cart-actions {
+                grid-column: 1 / -1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="brand"><span>INOVE</span> X-SKIN</div>
+            <nav aria-label="Navegacao principal">
+                <a href="#produto">Produto</a>
+                <a href="#video">Video</a>
+                <a href="#experiencia">3D + IA</a>
+                <a href="#galeria">Imagens</a>
+                <a href="#detalhes">Detalhes</a>
+                <a href="#loja">Loja</a>
+                <a href="#endereco">Endereco</a>
+                <a href="#carrinho">Carrinho <span class="cart-badge" id="cartCount">0</span></a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="produto">
+                <div>
+                    <div class="overline">Colete VR sensorial premium</div>
+                    <h1>INOVE X-SKIN</h1>
+                    <p class="lead">Uma pele inteligente para realidade virtual com motores hapticos, ventilacao ativa, microvibracoes 360 graus, sensores de movimento, painel touch e bateria de longa duracao.</p>
+                    <p>O X-SKIN foi pensado para gamers, simuladores, treinamentos e experiencias imersivas. Em vez de apenas ver o jogo, o usuario sente vento, impacto, vibracao, calor, frio e resposta corporal em tempo real.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" type="button" data-add="pro">Comprar Pro</button>
+                        <a href="#galeria" class="btn btn-secondary">Ver imagens</a>
+                        <button class="btn btn-secondary" type="button" id="demoBtn">Agendar demo</button>
+                    </div>
+                </div>
+
+                <div class="hero-media">
+                    <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_49_12.png" alt="Colete INOVE X-SKIN com sensores, ventilacao e painel touch">
+                    <div class="media-caption">
+                        <div><strong>12h+</strong><span>Bateria recarregavel</span></div>
+                        <div><strong>360</strong><span>Microvibracoes no corpo</span></div>
+                        <div><strong>5ms</strong><span>Baixa latencia</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="video">
+                <div class="video-section">
+                    <div class="video-frame">
+                        <video controls autoplay muted loop playsinline poster="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_54_13.png">
+                            <source src="imagens/VR_cooling_suit_with_fans_202606121801.mp4" type="video/mp4">
+                            Seu navegador nao conseguiu carregar o video do INOVE X-SKIN.
+                        </video>
+                    </div>
+                    <div>
+                        <div class="overline">Demonstracao oficial</div>
+                        <h2>Veja o sistema de resfriamento em acao</h2>
+                        <p>O video mostra a proposta de ventilacao ativa do X-SKIN, com fluxo de ar lateral e traseiro para manter o corpo confortavel durante partidas longas, simuladores de corrida, arenas VR e treinamentos profissionais.</p>
+                        <div class="hero-actions">
+                            <a href="#loja" class="btn btn-primary">Escolher versao</a>
+                            <a href="#especificacoes" class="btn btn-secondary">Ver ficha tecnica</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experiencia">
+                <div class="section-header">
+                    <div class="overline">Experiencia interativa</div>
+                    <h2>Explore o X-SKIN em 3D e fale com a nossa IA</h2>
+                    <p>Gire o modelo para conhecer o conceito do colete e tire suas duvidas sobre versoes, recursos, entrega e compatibilidade.</p>
+                </div>
+                <div class="experience-layout">
+                    <div class="viewer-3d" aria-label="Modelo 3D interativo do colete INOVE X-SKIN">
+                        <span class="viewer-label">MODELO 3D • X-SKIN PRO</span>
+                        <div class="scene-3d" id="scene3d">
+                            <div class="product-3d" id="product3d" role="img" aria-label="Representacao tridimensional do colete X-SKIN">
+                                <div class="collar"></div><div class="arm left"></div><div class="arm right"></div>
+                                <div class="suit-body"></div><div class="core"></div>
+                                <i class="sensor s1"></i><i class="sensor s2"></i><i class="sensor s3"></i><i class="sensor s4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ai-panel">
+                        <div class="ai-top"><h3>Assistente INOVE AI</h3><span class="ai-status">Online</span></div>
+                        <div class="chat-messages" id="chatMessages" aria-live="polite">
+                            <div class="message bot">Olá. Sou a assistente virtual da INOVE X-SKIN. Posso orientá-lo na escolha da versão mais adequada e esclarecer dúvidas sobre recursos, compatibilidade e aquisição.</div>
+                        </div>
+                        <div class="quick-questions">
+                            <button class="quick-question" type="button">Qual versao escolher?</button>
+                            <button class="quick-question" type="button">Funciona com meu VR?</button>
+                            <button class="quick-question" type="button">Tem entrega para minha cidade?</button>
+                        </div>
+                        <form class="chat-form" id="chatForm">
+                            <input id="chatInput" type="text" maxlength="400" placeholder="Digite sua pergunta..." aria-label="Pergunta para a assistente virtual" required>
+                            <button class="btn btn-primary" type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section id="galeria">
+                <div class="section-header">
+                    <h2>Fotos do produto</h2>
+                    <p>As fotos da pasta imagens aparecem aqui na galeria, na capa e nos produtos da loja. Clique em cada miniatura para trocar a imagem principal.</p>
+                </div>
+                <div class="gallery">
+                    <div class="gallery-main">
+                        <img id="mainImage" src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_49_12.png" alt="Imagem principal do colete INOVE X-SKIN">
+                    </div>
+                    <div class="thumbs">
+                        <button class="thumb active" type="button" data-image="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_49_12.png" data-alt="Visao completa do colete com sensores e ventiladores">
+                            <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_49_12.png" alt="">
+                            <span>Visao completa com sensores</span>
+                        </button>
+                        <button class="thumb" type="button" data-image="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_52_26.png" data-alt="Colete VR com detalhes laterais, ajustes e cores">
+                            <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_52_26.png" alt="">
+                            <span>Versao VR total</span>
+                        </button>
+                        <button class="thumb" type="button" data-image="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_54_13.png" data-alt="Colete VR com sistema de resfriamento e compatibilidade">
+                            <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_54_13.png" alt="">
+                            <span>Detalhes premium</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="detalhes">
+                <div class="section-header">
+                    <h2>Mais informacoes</h2>
+                    <p>O INOVE X-SKIN foi organizado como equipamento de alta performance: confortavel para usar por horas, resistente para sessoes intensas e facil de ajustar durante o jogo.</p>
+                </div>
+                <div class="details-grid">
+                    <div class="card">
+                        <h3>Feedback haptico 360</h3>
+                        <p>Motores de alta precisao simulam colisoes, disparos, chuva, vento e impacto lateral com resposta rapida.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ventilacao ativa</h3>
+                        <p>Mini ventiladores laterais e traseiros controlam o fluxo de ar para manter conforto em sessoes longas.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Painel touch</h3>
+                        <p>Controle direto na manga para ajustar vibracao, iluminacao, ventilacao, perfil de uso e nivel de bateria.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Tecido inteligente</h3>
+                        <p>Material respiravel, flexivel, antiodor e resistente, com ajuste ergonomico para diferentes corpos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>RGB personalizavel</h3>
+                        <p>Mais de 16 milhoes de cores para combinar com setup, equipe, jogo ou modo de treinamento.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Conectividade</h3>
+                        <p>Bluetooth 5.4, Wi-Fi 7 e modo de baixa latencia para PC VR, Meta Quest, SteamVR, Unity e Unreal Engine.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Bateria removivel</h3>
+                        <p>Ate 12 horas de uso continuo, recarga rapida USB-C e troca simples para sessoes sem interrupcao.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Suporte premium</h3>
+                        <p>Garantia, atualizacoes do app, ajuda na configuracao inicial e atendimento para uso profissional.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="especificacoes">
+                <div class="section-header">
+                    <h2>Ficha tecnica completa</h2>
+                    <p>Uma visao mais profissional do produto, com informacoes de construcao, conectividade, conforto, bateria e conteudo da embalagem.</p>
+                </div>
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Especificacao</th>
+                            <th>Beneficio para o usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sensores</td>
+                            <td>Rastreamento corporal 360 graus, sensores de movimento e resposta haptica por zonas</td>
+                            <td>Mais precisao em jogos de acao, corrida, simuladores e treinamentos</td>
+                        </tr>
+                        <tr>
+                            <td>Conforto</td>
+                            <td>Tecido respiravel, ajuste ergonomico, alcas reforcadas e ventilacao silenciosa</td>
+                            <td>Uso prolongado sem excesso de calor e com encaixe firme no corpo</td>
+                        </tr>
+                        <tr>
+                            <td>Energia</td>
+                            <td>Bateria removivel, recarga USB-C e autonomia de ate 12 horas na versao Pro</td>
+                            <td>Sessoes longas com troca simples de bateria e carregamento rapido</td>
+                        </tr>
+                        <tr>
+                            <td>Conectividade</td>
+                            <td>Bluetooth 5.4, Wi-Fi 7, PC VR, Meta Quest, SteamVR, Unity e Unreal Engine</td>
+                            <td>Integracao com setups domesticos, arenas VR e projetos profissionais</td>
+                        </tr>
+                        <tr>
+                            <td>Caixa</td>
+                            <td>Colete X-SKIN, bateria, cabo USB-C, manual, case de transporte e acesso ao app</td>
+                            <td>Produto pronto para configurar, transportar e usar logo apos a compra</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="comparativo">
+                <div class="section-header">
+                    <h2>Compare as versoes</h2>
+                    <p>Cada plano foi criado para um tipo de uso: entrada, gamer exigente ou simulacao de alta performance.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card">
+                        <h3>Core</h3>
+                        <p>Melhor para comecar com feedback fisico e compatibilidade ampla.</p>
+                        <ul>
+                            <li>8 motores hapticos</li>
+                            <li>Autonomia de ate 8 horas</li>
+                            <li>Iluminacao RGB basica</li>
+                            <li>Garantia de 12 meses</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Pro</h3>
+                        <p>O equilibrio ideal entre preco, conforto e recursos avancados.</p>
+                        <ul>
+                            <li>14 motores hapticos</li>
+                            <li>Ventilacao ativa inteligente</li>
+                            <li>Painel touch na manga</li>
+                            <li>Garantia de 18 meses</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Elite</h3>
+                        <p>Para quem quer a experiencia mais completa e responsiva.</p>
+                        <ul>
+                            <li>18 motores hapticos</li>
+                            <li>Resfriamento avancado</li>
+                            <li>Perfil profissional de simulacao</li>
+                            <li>Garantia de 24 meses</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="entrega">
+                <div class="section-header">
+                    <h2>Compra, entrega e instalacao</h2>
+                    <p>A jornada de compra ficou mais realista, com etapas claras depois do pedido.</p>
+                </div>
+                <div class="grid-3 process">
+                    <div class="card">
+                        <h3>Pedido confirmado</h3>
+                        <p>Depois de finalizar, o cliente recebe a simulacao do pedido com produto escolhido, valor total, pagamento e endereco de entrega.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Configuracao inicial</h3>
+                        <p>O aplicativo orienta pareamento, calibracao do corpo, intensidade das vibracoes, controle termico e perfil de uso.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Suporte pos-venda</h3>
+                        <p>A equipe acompanha ativacao, duvidas de compatibilidade, atualizacoes e manutencao preventiva do equipamento.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="loja">
+                <div class="section-header">
+                    <h2>Loja online</h2>
+                    <p>Escolha sua versao, adicione ao carrinho e veja subtotal, desconto, frete e total calculados automaticamente.</p>
+                </div>
+                <div class="product-grid">
+                    <article class="product-card">
+                        <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_49_12.png" alt="INOVE X-SKIN Core">
+                        <div class="product-body">
+                            <span class="tag">Entrada</span>
+                            <h3>INOVE X-SKIN Core</h3>
+                            <p>Para entrar no mundo haptico com conforto, vibracao e compatibilidade ampla.</p>
+                            <div class="price">R$ 9.000</div>
+                            <ul>
+                                <li>Microvibracao 360 graus</li>
+                                <li>Tecido respiravel</li>
+                                <li>Bateria de ate 8 horas</li>
+                            </ul>
+                            <button class="btn btn-primary" type="button" data-add="core">Adicionar</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_52_26.png" alt="INOVE X-SKIN Pro">
+                        <div class="product-body">
+                            <span class="tag">Mais vendido</span>
+                            <h3>INOVE X-SKIN Pro</h3>
+                            <p>A versao equilibrada, com mais sensores, ventilacao ativa e controle touch completo.</p>
+                            <div class="price">R$ 12.900</div>
+                            <ul>
+                                <li>Ventilacao inteligente</li>
+                                <li>Painel touch na manga</li>
+                                <li>Bateria de ate 12 horas</li>
+                            </ul>
+                            <button class="btn btn-primary" type="button" data-add="pro">Adicionar</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="imagens/ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_54_13.png" alt="INOVE X-SKIN Elite">
+                        <div class="product-body">
+                            <span class="tag">Performance</span>
+                            <h3>INOVE X-SKIN Elite</h3>
+                            <p>Para simulacao intensa, treinamento profissional e imersao maxima com resposta rapida.</p>
+                            <div class="price">R$ 16.900</div>
+                            <ul>
+                                <li>18 motores hapticos</li>
+                                <li>Resfriamento avancado</li>
+                                <li>Suporte prioritario</li>
+                            </ul>
+                            <button class="btn btn-primary" type="button" data-add="elite">Adicionar</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="endereco">
+                <div class="section-header">
+                    <h2>Endereco e atendimento</h2>
+                    <p>Informacoes comerciais para deixar a loja mais completa e confiavel, como um site real de produto premium.</p>
+                </div>
+                <div class="contact-layout">
+                    <div class="address-card">
+                        <h3>INOVE X-SKIN Experience Store</h3>
+                        <p>Unidade conceito para demonstracao, retirada de pedidos, suporte tecnico e testes de compatibilidade com headsets VR.</p>
+                        <div class="address-list">
+                            <div>
+                                <strong>Endereco da loja</strong>
+                                <p>Avenida Paulista, 1578, Bela Vista, Sao Paulo - SP, CEP 01310-200</p>
+                            </div>
+                            <div>
+                                <strong>Horario</strong>
+                                <p>Segunda a sexta, das 9h as 19h. Sabado, das 10h as 16h.</p>
+                            </div>
+                            <div>
+                                <strong>Contato</strong>
+                                <p>Telefone: (11) 4002-2050<br>E-mail: atendimento@inovexskin.com.br<br>WhatsApp: (11) 94002-2050</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-placeholder" aria-label="Mapa ilustrativo da loja INOVE X-SKIN">
+                        <div class="map-pin">
+                            <h3>Loja conceito Sao Paulo</h3>
+                            <p>Agende uma demonstracao, experimente o colete com seu headset e receba orientacao para escolher a melhor versao.</p>
+                            <div class="hero-actions">
+                                <a class="btn btn-primary" href="#carrinho">Comprar online</a>
+                                <a class="btn btn-secondary" href="mailto:atendimento@inovexskin.com.br">Enviar e-mail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq">
+                <div class="section-header">
+                    <h2>Perguntas frequentes</h2>
+                    <p>Respostas rapidas para quem quer comprar, testar ou entender melhor como o X-SKIN funciona.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>Funciona com qualquer jogo?</h3>
+                        <p>Funciona melhor com jogos e simuladores compativeis com perfis hapticos, mas tambem oferece modos universais de vibracao e ventilacao.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Precisa de instalacao tecnica?</h3>
+                        <p>Nao. O pareamento e guiado pelo app, mas a loja oferece suporte para calibracao avancada e uso profissional.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>O carrinho finaliza compra real?</h3>
+                        <p>Este site e demonstrativo: os botoes funcionam na pagina e simulam o pedido, sem cobranca real.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="carrinho">
+                <div class="section-header">
+                    <h2>Carrinho e compra</h2>
+                    <p>Adicione produtos, altere quantidades, escolha pagamento e preencha o endereco de entrega para finalizar a simulacao do pedido.</p>
+                </div>
+                <div class="cart-layout">
+                    <div class="cart-panel">
+                        <h3>Itens selecionados</h3>
+                        <div id="cartItems" class="cart-items"></div>
+                    </div>
+                    <aside class="checkout-panel">
+                        <h3>Resumo da compra</h3>
+                        <div class="summary-row"><span>Subtotal</span><strong id="subtotal">R$ 0</strong></div>
+                        <div class="summary-row"><span>Desconto</span><strong id="discount">R$ 0</strong></div>
+                        <div class="summary-row"><span>Frete premium</span><strong id="shipping">R$ 0</strong></div>
+                        <div class="summary-row total"><span>Total</span><strong id="total">R$ 0</strong></div>
+
+                        <div class="form-grid">
+                            <label class="full">Nome completo
+                                <input id="customerName" type="text" placeholder="Seu nome">
+                            </label>
+                            <label class="full">E-mail
+                                <input id="customerEmail" type="email" placeholder="voce@email.com">
+                            </label>
+                            <label>Telefone
+                                <input id="customerPhone" type="tel" placeholder="(11) 99999-9999">
+                            </label>
+                            <label>CEP
+                                <input id="zipCode" type="text" placeholder="00000-000">
+                            </label>
+                            <label class="full">Endereco de entrega
+                                <input id="street" type="text" placeholder="Rua, avenida ou estrada">
+                            </label>
+                            <label>Numero
+                                <input id="number" type="text" placeholder="123">
+                            </label>
+                            <label>Complemento
+                                <input id="complement" type="text" placeholder="Apartamento, bloco, referencia">
+                            </label>
+                            <label>Bairro
+                                <input id="district" type="text" placeholder="Bairro">
+                            </label>
+                            <label>Cidade
+                                <input id="city" type="text" placeholder="Cidade">
+                            </label>
+                            <label>Estado
+                                <select id="state">
+                                    <option value="">Selecione</option>
+                                    <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+                                    <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                                    <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+                                    <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+                                    <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+                                    <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+                                    <option>SP</option><option>SE</option><option>TO</option>
+                                </select>
+                            </label>
+                            <label>Forma de pagamento
+                                <select id="payment">
+                                    <option>Pix com 5% de desconto</option>
+                                    <option>Cartao em ate 12x</option>
+                                    <option>Boleto bancario</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <button id="checkoutBtn" class="btn btn-primary" type="button">Finalizar compra</button>
+                        <button id="clearCartBtn" class="btn btn-danger" type="button">Limpar carrinho</button>
+                        <p id="notice" class="notice" aria-live="polite"></p>
+                        <div id="orderPreview" class="order-preview" aria-live="polite"></div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <div class="footer">2026 INOVE X-SKIN. Loja demonstrativa de tecnologia vestivel para realidade virtual.</div>
+    </div>
+
+    <script>
+        const imageBase = "imagens/";
+        const products = {
+            core: {
+                name: "INOVE X-SKIN Core",
+                price: 9000,
+                image: imageBase + "ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_49_12.png"
+            },
+            pro: {
+                name: "INOVE X-SKIN Pro",
+                price: 12900,
+                image: imageBase + "ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_52_26.png"
+            },
+            elite: {
+                name: "INOVE X-SKIN Elite",
+                price: 16900,
+                image: imageBase + "ChatGPT%20Image%206%20de%20jul.%20de%202026,%2017_54_13.png"
+            }
+        };
+
+        const cart = {};
+        const formatCurrency = value => value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+            maximumFractionDigits: 0
+        });
+
+        const cartItems = document.getElementById("cartItems");
+        const cartCount = document.getElementById("cartCount");
+        const subtotalEl = document.getElementById("subtotal");
+        const discountEl = document.getElementById("discount");
+        const shippingEl = document.getElementById("shipping");
+        const totalEl = document.getElementById("total");
+        const notice = document.getElementById("notice");
+        const paymentEl = document.getElementById("payment");
+        const orderPreview = document.getElementById("orderPreview");
+
+        function currentTotals() {
+            const entries = Object.entries(cart);
+            const subtotal = entries.reduce((sum, [id, qty]) => sum + products[id].price * qty, 0);
+            const discount = subtotal > 0 && paymentEl.value.startsWith("Pix") ? subtotal * 0.05 : 0;
+            const shipping = subtotal > 0 ? 290 : 0;
+            return { entries, subtotal, discount, shipping, total: subtotal - discount + shipping };
+        }
+
+        function setNotice(message, isError = false) {
+            notice.textContent = message;
+            notice.classList.toggle("error", isError);
+        }
+
+        function addToCart(productId) {
+            cart[productId] = (cart[productId] || 0) + 1;
+            orderPreview.classList.remove("active");
+            orderPreview.innerHTML = "";
+            setNotice(products[productId].name + " adicionado ao carrinho.");
+            renderCart();
+            document.getElementById("carrinho").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function changeQuantity(productId, amount) {
+            cart[productId] = (cart[productId] || 0) + amount;
+            if (cart[productId] <= 0) {
+                delete cart[productId];
+            }
+            renderCart();
+        }
+
+        function removeItem(productId) {
+            delete cart[productId];
+            setNotice("Item removido do carrinho.");
+            renderCart();
+        }
+
+        function clearCart() {
+            Object.keys(cart).forEach(productId => delete cart[productId]);
+            orderPreview.classList.remove("active");
+            orderPreview.innerHTML = "";
+            setNotice("Carrinho limpo.");
+            renderCart();
+        }
+
+        function renderCart() {
+            const { entries, subtotal, discount, shipping, total } = currentTotals();
+            const itemCount = entries.reduce((sum, [, qty]) => sum + qty, 0);
+
+            cartCount.textContent = itemCount;
+            subtotalEl.textContent = formatCurrency(subtotal);
+            discountEl.textContent = "- " + formatCurrency(discount);
+            shippingEl.textContent = formatCurrency(shipping);
+            totalEl.textContent = formatCurrency(total);
+
+            if (entries.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty">Seu carrinho esta vazio. Escolha uma versao na loja online.</div>';
+                return;
+            }
+
+            cartItems.innerHTML = entries.map(([id, qty]) => {
+                const product = products[id];
+                return `
+                    <div class="cart-item">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div>
+                            <strong>${product.name}</strong>
+                            <p>${formatCurrency(product.price)} cada</p>
+                        </div>
+                        <div class="cart-actions">
+                            <div class="qty-controls">
+                                <button class="icon-btn" type="button" data-dec="${id}" aria-label="Diminuir quantidade">-</button>
+                                <strong>${qty}</strong>
+                                <button class="icon-btn" type="button" data-inc="${id}" aria-label="Aumentar quantidade">+</button>
+                            </div>
+                            <button class="btn btn-danger" type="button" data-remove="${id}">Remover</button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function valueOf(id) {
+            return document.getElementById(id).value.trim();
+        }
+
+        function validateCheckout() {
+            const required = [
+                ["customerName", "nome completo"],
+                ["customerEmail", "e-mail"],
+                ["customerPhone", "telefone"],
+                ["zipCode", "CEP"],
+                ["street", "endereco"],
+                ["number", "numero"],
+                ["district", "bairro"],
+                ["city", "cidade"],
+                ["state", "estado"]
+            ];
+            const missing = required.filter(([id]) => !valueOf(id)).map(([, label]) => label);
+            return missing;
+        }
+
+        function finishCheckout() {
+            const { entries, total } = currentTotals();
+            const itemCount = entries.reduce((sum, [, qty]) => sum + qty, 0);
+            const payment = paymentEl.value;
+
+            if (itemCount === 0) {
+                setNotice("Adicione pelo menos um produto antes de finalizar.", true);
+                return;
+            }
+
+            const missing = validateCheckout();
+            if (missing.length) {
+                setNotice("Preencha: " + missing.join(", ") + ".", true);
+                return;
+            }
+
+            const address = `${valueOf("street")}, ${valueOf("number")}${valueOf("complement") ? " - " + valueOf("complement") : ""}, ${valueOf("district")}, ${valueOf("city")} - ${valueOf("state")}, CEP ${valueOf("zipCode")}`;
+            const productSummary = entries.map(([id, qty]) => `${qty}x ${products[id].name}`).join("<br>");
+
+            setNotice("Pedido confirmado. Esta e uma compra demonstrativa, sem cobranca real.");
+            orderPreview.innerHTML = `
+                <strong>Resumo do pedido</strong>
+                <p>${productSummary}</p>
+                <p><strong>Cliente:</strong> ${valueOf("customerName")}<br>
+                <strong>Contato:</strong> ${valueOf("customerEmail")} | ${valueOf("customerPhone")}<br>
+                <strong>Entrega:</strong> ${address}<br>
+                <strong>Pagamento:</strong> ${payment}<br>
+                <strong>Total:</strong> ${formatCurrency(total)}</p>
+            `;
+            orderPreview.classList.add("active");
+        }
+
+        document.querySelectorAll("[data-add]").forEach(button => {
+            button.addEventListener("click", () => addToCart(button.dataset.add));
+        });
+
+        cartItems.addEventListener("click", event => {
+            const inc = event.target.closest("[data-inc]");
+            const dec = event.target.closest("[data-dec]");
+            const remove = event.target.closest("[data-remove]");
+
+            if (inc) changeQuantity(inc.dataset.inc, 1);
+            if (dec) changeQuantity(dec.dataset.dec, -1);
+            if (remove) removeItem(remove.dataset.remove);
+        });
+
+        document.getElementById("clearCartBtn").addEventListener("click", clearCart);
+        document.getElementById("checkoutBtn").addEventListener("click", finishCheckout);
+        document.getElementById("demoBtn").addEventListener("click", () => {
+            setNotice("Demo solicitada. Preencha seus dados no carrinho para a equipe entrar em contato.");
+            document.getElementById("carrinho").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        paymentEl.addEventListener("change", renderCart);
+
+        document.querySelectorAll(".thumb").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".thumb").forEach(item => item.classList.remove("active"));
+                button.classList.add("active");
+                const mainImage = document.getElementById("mainImage");
+                mainImage.src = button.dataset.image;
+                mainImage.alt = button.dataset.alt;
+            });
+        });
+
+        // Para usar uma IA real, configure window.INOVE_AI_ENDPOINT em um servidor seguro.
+        // O endpoint recebe { message, systemPrompt, context } e devolve { reply }. Nunca coloque uma chave de API no HTML.
+        const chatMessages = document.getElementById("chatMessages");
+        const chatForm = document.getElementById("chatForm");
+        const chatInput = document.getElementById("chatInput");
+
+        function appendMessage(text, type) {
+            const message = document.createElement("div");
+            message.className = "message " + type;
+            message.textContent = text;
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        const aiSystemPrompt = "Você é a assistente comercial da INOVE X-SKIN. Responda sempre em português do Brasil, com linguagem formal, clara e objetiva. Baseie-se exclusivamente no contexto fornecido. Não invente especificações, disponibilidade, prazo ou compatibilidade. Quando a informação não estiver disponível, informe isso com transparência e ofereça o próximo passo apropriado. Recomende produtos apenas depois de relacionar a necessidade do cliente aos recursos das versões.";
+        const productContext = {
+            Core: "R$ 9.000; 8 motores hápticos; indicada para iniciar na experiência háptica, com conforto e compatibilidade ampla; autonomia de até 8 horas.",
+            Pro: "R$ 12.900; 14 motores hápticos; ventilação ativa e painel touch; equilíbrio entre preço, conforto e recursos; autonomia de até 12 horas.",
+            Elite: "R$ 16.900; 18 motores hápticos e resfriamento avançado; destinada à simulação intensa, treinamento profissional e máxima imersão."
+        };
+
+        function localAiReply(question) {
+            const text = question.toLocaleLowerCase("pt-BR");
+            const mentions = {
+                core: /\bcore\b/.test(text),
+                pro: /\bpro\b/.test(text),
+                elite: /\belite\b/.test(text)
+            };
+            const selected = Object.keys(mentions).filter(key => mentions[key]);
+            const specificProduct = selected.length === 1 ? selected[0][0].toUpperCase() + selected[0].slice(1) : null;
+
+            if (/(olá|ola|bom dia|boa tarde|boa noite)/.test(text)) {
+                return "Olá. Será um prazer ajudar. Informe, por gentileza, se procura uma recomendação de versão, informações técnicas, compatibilidade, entrega ou pagamento.";
+            }
+            if (/(versão|versao|qual.*escolher|recomend|compar|diferença|diferenca)/.test(text)) {
+                return "A escolha depende do seu objetivo: a Core é indicada para começar, com 8 motores hápticos e até 8 horas de autonomia; a Pro oferece o melhor equilíbrio, com 14 motores, ventilação ativa, painel touch e até 12 horas; a Elite é a alternativa para simulação intensa e uso profissional, com 18 motores e resfriamento avançado. Para uso recorrente em VR, a Pro costuma ser a recomendação mais equilibrada.";
+            }
+            if (specificProduct && /(preço|preco|valor|recursos|especific|detalhe|bateria|autonomia)/.test(text)) {
+                return `A INOVE X-SKIN ${specificProduct} apresenta: ${productContext[specificProduct]}`;
+            }
+            if (/(vr|headset|jogo|compat)/.test(text)) {
+                return "A X-SKIN foi desenvolvida para experiências com headsets e jogos de realidade virtual. Oferece perfis hápticos compatíveis e modos universais de vibração e ventilação. Para confirmar a compatibilidade com um headset ou jogo específico, informe o modelo desejado para avaliação da equipe.";
+            }
+            if (/(entrega|frete|cidade|prazo|cep|endereço|endereco)/.test(text)) {
+                return "A entrega está disponível para todo o Brasil. Para registrar a solicitação e receber a confirmação das condições aplicáveis ao seu endereço, preencha o CEP e os dados de entrega no carrinho. O valor de frete demonstrativo exibido no site é de R$ 290.";
+            }
+            if (/(preço|preco|valor|custa|pagamento|pix|cartão|cartao|parcel)/.test(text)) {
+                return "Os valores são: Core, R$ 9.000; Pro, R$ 12.900; e Elite, R$ 16.900. O pagamento via Pix concede 5% de desconto. No cartão, o parcelamento está disponível em até 12 vezes.";
+            }
+            if (/(bateria|ventila|sensor|hápt|hapt|motor|recurso|funciona)/.test(text)) {
+                return "A linha X-SKIN combina microvibração em 360 graus, sensores de movimento e ventilação ativa. A Core possui autonomia de até 8 horas; a Pro, de até 12 horas. As versões Pro e Elite atendem melhor a quem prioriza recursos avançados e maior intensidade de imersão.";
+            }
+            return "Posso orientar sobre as versões Core, Pro e Elite, recursos técnicos, compatibilidade com VR, entrega e formas de pagamento. Por favor, informe qual é a sua necessidade para que eu possa oferecer uma orientação mais precisa.";
+        }
+
+        async function askAssistant(question) {
+            appendMessage(question, "user");
+            chatInput.value = "";
+            const endpoint = window.INOVE_AI_ENDPOINT;
+            if (endpoint) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            message: question,
+                            systemPrompt: aiSystemPrompt,
+                            context: productContext
+                        })
+                    });
+                    const data = await response.json();
+                    if (response.ok && data.reply) {
+                        appendMessage(data.reply, "bot");
+                        return;
+                    }
+                } catch (error) {
+                    console.warn("IA remota indisponivel; usando assistente local.", error);
+                }
+            }
+            window.setTimeout(() => appendMessage(localAiReply(question), "bot"), 350);
+        }
+
+        chatForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const question = chatInput.value.trim();
+            if (question) askAssistant(question);
+        });
+        document.querySelectorAll(".quick-question").forEach(button => {
+            button.addEventListener("click", () => askAssistant(button.textContent));
+        });
+
+        const scene3d = document.getElementById("scene3d");
+        const product3d = document.getElementById("product3d");
+        let rotationX = -8;
+        let rotationY = -24;
+        let dragStart = null;
+        function render3d() {
+            product3d.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+        }
+        scene3d.addEventListener("pointerdown", event => {
+            dragStart = { x: event.clientX, y: event.clientY, rotationX, rotationY };
+            scene3d.setPointerCapture(event.pointerId);
+        });
+        scene3d.addEventListener("pointermove", event => {
+            if (!dragStart) return;
+            rotationY = dragStart.rotationY + (event.clientX - dragStart.x) * .45;
+            rotationX = Math.max(-35, Math.min(35, dragStart.rotationX - (event.clientY - dragStart.y) * .25));
+            render3d();
+        });
+        ["pointerup", "pointercancel"].forEach(type => scene3d.addEventListener(type, () => { dragStart = null; }));
+        render3d();
+
+        renderCart();
+    </script>
+</body>
+</html>
